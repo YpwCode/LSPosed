@@ -1,21 +1,4 @@
-/*
- * This file is part of LSPosed.
- *
- * LSPosed is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * LSPosed is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with LSPosed.  If not, see <https://www.gnu.org/licenses/>.
- *
- * Copyright (C) 2022 LSPosed Contributors
- */
+
 
 //
 // Created by Kotori2 on 2021/12/1.
@@ -44,9 +27,9 @@ std::map<const std::string, std::string> signatures = {
         { "Landroid/app/AndroidApp", ""},
         { "Landroid/content/res/XRes", ""},
         { "Landroid/content/res/XModule", ""},
-        { "Lorg/lsposed/lspd/core/", ""},
-        { "Lorg/lsposed/lspd/nativebridge/", ""},
-        { "Lorg/lsposed/lspd/service/", ""},
+        { "Lorg/mliboot/mlspd/core/", ""},
+        { "Lorg/mliboot/mlspd/nativebridge/", ""},
+        { "Lorg/mliboot/mlspd/service/", ""},
 };
 
 jclass class_file_descriptor;
@@ -147,7 +130,7 @@ jobject stringMapToJavaHashMap(JNIEnv *env, const decltype(signatures)& map) {
 
 extern "C"
 JNIEXPORT jobject JNICALL
-Java_org_lsposed_lspd_service_ObfuscationManager_getSignatures(JNIEnv *env, [[maybe_unused]] jclass obfuscation_manager) {
+Java_org_mliboot_mlspd_service_ObfuscationManager_getSignatures(JNIEnv *env, [[maybe_unused]] jclass obfuscation_manager) {
     maybeInit(env);
     static jobject signatures_jni = nullptr;
     if (signatures_jni) return signatures_jni;
@@ -186,7 +169,7 @@ static int obfuscateDex(const void *dex, size_t size) {
 
 extern "C"
 JNIEXPORT jobject
-Java_org_lsposed_lspd_service_ObfuscationManager_obfuscateDex(JNIEnv *env, [[maybe_unused]] jclass obfuscation_manager,
+Java_org_mliboot_mlspd_service_ObfuscationManager_obfuscateDex(JNIEnv *env, [[maybe_unused]] jclass obfuscation_manager,
                                                        jobject memory) {
     maybeInit(env);
     int fd = ASharedMemory_dupFromJava(env, memory);

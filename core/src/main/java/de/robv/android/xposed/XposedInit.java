@@ -1,27 +1,9 @@
-/*
- * This file is part of LSPosed.
- *
- * LSPosed is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * LSPosed is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with LSPosed.  If not, see <https://www.gnu.org/licenses/>.
- *
- * Copyright (C) 2020 EdXposed Contributors
- * Copyright (C) 2021 LSPosed Contributors
- */
+
 
 package de.robv.android.xposed;
 
-import static org.lsposed.lspd.core.ApplicationServiceClient.serviceClient;
-import static org.lsposed.lspd.deopt.PrebuiltMethodsDeopter.deoptResourceMethods;
+import static org.mliboot.mlspd.core.ApplicationServiceClient.serviceClient;
+import static org.mliboot.mlspd.deopt.PrebuiltMethodsDeopter.deoptResourceMethods;
 import static de.robv.android.xposed.XposedBridge.hookAllMethods;
 import static de.robv.android.xposed.XposedHelpers.callMethod;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
@@ -41,11 +23,11 @@ import android.os.Process;
 import android.util.ArrayMap;
 import android.util.Log;
 
-import org.lsposed.lspd.impl.LSPosedContext;
-import org.lsposed.lspd.models.PreLoadedApk;
-import org.lsposed.lspd.nativebridge.NativeAPI;
-import org.lsposed.lspd.nativebridge.ResourcesHook;
-import org.lsposed.lspd.util.LspModuleClassLoader;
+import org.mliboot.mlspd.impl.LSPosedContext;
+import org.mliboot.mlspd.models.PreLoadedApk;
+import org.mliboot.mlspd.nativebridge.NativeAPI;
+import org.mliboot.mlspd.nativebridge.ResourcesHook;
+import org.mliboot.mlspd.util.LspModuleClassLoader;
 
 import java.io.File;
 import java.lang.ref.WeakReference;

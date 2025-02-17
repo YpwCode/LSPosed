@@ -1,25 +1,25 @@
 -keep class de.robv.android.xposed.** {*;}
--keep class io.github.libxposed.** {*;}
+-keep class org.mliboot.libxp.** {*;}
 -keepattributes RuntimeVisibleAnnotations
 -keep class android.** { *; }
 -keepclasseswithmembers,includedescriptorclasses class * {
     native <methods>;
 }
--keepclassmembers class org.lsposed.lspd.impl.LSPosedContext {
+-keepclassmembers class org.mliboot.mlspd.impl.LSPosedContext {
     public <methods>;
 }
--keepclassmembers class org.lsposed.lspd.impl.LSPosedHookCallback {
+-keepclassmembers class org.mliboot.mlspd.impl.LSPosedHookCallback {
     public <methods>;
 }
--keep,allowoptimization,allowobfuscation @io.github.libxposed.api.annotations.* class * {
-    @io.github.libxposed.api.annotations.BeforeInvocation <methods>;
-    @io.github.libxposed.api.annotations.AfterInvocation <methods>;
+-keep,allowoptimization,allowobfuscation @org.mliboot.libxp.api.annotations.* class * {
+    @org.mliboot.libxp.api.annotations.BeforeInvocation <methods>;
+    @org.mliboot.libxp.api.annotations.AfterInvocation <methods>;
 }
--keepclassmembers class org.lsposed.lspd.impl.LSPosedBridge$NativeHooker {
+-keepclassmembers class org.mliboot.mlspd.impl.LSPosedBridge$NativeHooker {
     <init>(java.lang.reflect.Executable);
     callback(...);
 }
--keepclassmembers class org.lsposed.lspd.impl.LSPosedBridge$HookerCallback {
+-keepclassmembers class org.mliboot.mlspd.impl.LSPosedBridge$HookerCallback {
     final *** beforeInvocation;
     final *** afterInvocation;
     HookerCallback(...);

@@ -15,7 +15,7 @@ dependencyResolutionManagement {
         mavenCentral()
         mavenLocal {
             content {
-                includeGroup("io.github.libxposed")
+                includeGroup("org.mliboot.libxp")
             }
         }
     }
@@ -24,7 +24,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "LSPosed"
+rootProject.name = "Mlpp"
 include(
     ":app",
     ":core",

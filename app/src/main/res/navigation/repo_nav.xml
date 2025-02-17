@@ -1,21 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ This file is part of LSPosed.
-  ~
-  ~ LSPosed is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ LSPosed is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with LSPosed.  If not, see <https://www.gnu.org/licenses/>.
-  ~
-  ~ Copyright (C) 2021 LSPosed Contributors
-  -->
+<?xml version="1.0" encoding="utf-8"?>
 <navigation android:id="@+id/repo_nav"
     app:startDestination="@id/repo_fragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -23,7 +6,7 @@
     <fragment
         android:id="@+id/repo_fragment"
         android:label="repo"
-        android:name="org.lsposed.manager.ui.fragment.RepoFragment">
+        android:name="org.mliboot.mlsp.manager.ui.fragment.RepoFragment">
         <action
             android:id="@+id/action_repo_fragment_to_repo_item_fragment"
             app:destination="@id/repo_item_fragment"
@@ -34,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/repo_item_fragment"
-        android:name="org.lsposed.manager.ui.fragment.RepoItemFragment"
+        android:name="org.mliboot.mlsp.manager.ui.fragment.RepoItemFragment"
         android:label="repo_item">
         <argument
             android:name="modulePackageName"

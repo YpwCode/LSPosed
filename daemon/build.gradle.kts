@@ -1,22 +1,3 @@
-/*
- * This file is part of LSPosed.
- *
- * LSPosed is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * LSPosed is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with LSPosed.  If not, see <https://www.gnu.org/licenses/>.
- *
- * Copyright (C) 2021 LSPosed Contributors
- */
-
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.ide.common.signing.KeystoreHelper
 import java.io.PrintStream
@@ -26,7 +7,7 @@ plugins {
     alias(libs.plugins.lsplugin.resopt)
 }
 
-val daemonName = "LSPosed"
+val daemonName = "Mlpp"
 
 val injectedPackageName: String by rootProject.extra
 val injectedPackageUid: Int by rootProject.extra
@@ -42,7 +23,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "org.lsposed.daemon"
+        applicationId = "org.mliboot.daemon"
 
         buildConfigField(
             "String",
@@ -74,7 +55,7 @@ android {
         }
     }
 
-    namespace = "org.lsposed.daemon"
+    namespace = "org.mliboot.daemon"
 }
 
 android.applicationVariants.all {
@@ -88,7 +69,7 @@ android.applicationVariants.all {
         val sign = rootProject.project(":app").extensions
             .getByType(ApplicationExtension::class.java)
             .buildTypes.named(variantLowered).get().signingConfig
-        val outSrc = file("$outSrcDir/org/lsposed/lspd/util/SignInfo.java")
+        val outSrc = file("$outSrcDir/org/mliboot/mlspd/util/SignInfo.java")
         outputs.file(outSrc)
         doLast {
             outSrc.parentFile.mkdirs()
@@ -101,7 +82,7 @@ android.applicationVariants.all {
             )
             PrintStream(outSrc).print(
                 """
-                |package org.lsposed.lspd.util;
+                |package org.mliboot.mlspd.util;
                 |public final class SignInfo {
                 |    public static final byte[] CERTIFICATE = {${
                     certificateInfo.certificate.encoded.joinToString(",")
@@ -114,7 +95,7 @@ android.applicationVariants.all {
 }
 
 dependencies {
-    implementation(libs.libxposed.`interface`)
+    implementation(libs.libxposed.inter)
     implementation(libs.agp.apksig)
     implementation(libs.commons.lang3)
     implementation(projects.hiddenapi.bridge)

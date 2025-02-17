@@ -1,22 +1,4 @@
-/*
- * This file is part of LSPosed.
- *
- * LSPosed is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * LSPosed is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with LSPosed.  If not, see <https://www.gnu.org/licenses/>.
- *
- * Copyright (C) 2020 EdXposed Contributors
- * Copyright (C) 2021 - 2022 LSPosed Contributors
- */
+
 
 #include <dlfcn.h>
 #include "dobby.h"
@@ -61,7 +43,7 @@ inline bool RegisterNativeMethodsInternal(JNIEnv *env,
 #define LSP_NATIVE_METHOD(className, functionName, signature)                \
   { #functionName,                                                       \
     signature,                                                           \
-    _NATIVEHELPER_JNI_MACRO_CAST(void*) (Java_org_lsposed_lspd_nativebridge_## className ## _ ## functionName) \
+    _NATIVEHELPER_JNI_MACRO_CAST(void*) (Java_org_mliboot_mlspd_nativebridge_## className ## _ ## functionName) \
   }
 #endif
 
@@ -69,7 +51,7 @@ inline bool RegisterNativeMethodsInternal(JNIEnv *env,
 
 #ifndef LSP_DEF_NATIVE_METHOD
 #define LSP_DEF_NATIVE_METHOD(ret, className, functionName, ...)                \
-  extern "C" ret Java_org_lsposed_lspd_nativebridge_## className ## _ ## functionName (JNI_START, ##  __VA_ARGS__)
+  extern "C" ret Java_org_mliboot_mlspd_nativebridge_## className ## _ ## functionName (JNI_START, ##  __VA_ARGS__)
 #endif
 
 #define REGISTER_LSP_NATIVE_METHODS(class_name) \
@@ -99,7 +81,7 @@ inline int UnhookFunction(void *original) {
 
 inline std::string GetNativeBridgeSignature() {
     const auto &obfs_map = ConfigBridge::GetInstance()->obfuscation_map();
-    static auto signature = obfs_map.at("org.lsposed.lspd.nativebridge.");
+    static auto signature = obfs_map.at("org.mliboot.mlspd.nativebridge.");
     return signature;
 }
 

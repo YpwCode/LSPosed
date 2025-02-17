@@ -1,21 +1,4 @@
-/*
- * This file is part of LSPosed.
- *
- * LSPosed is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * LSPosed is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with LSPosed.  If not, see <https://www.gnu.org/licenses/>.
- *
- * Copyright (C) 2021 - 2022 LSPosed Contributors
- */
+
 
 import org.apache.commons.codec.binary.Hex
 import org.apache.tools.ant.filters.FixCrLfFilter
@@ -28,11 +11,11 @@ plugins {
     alias(libs.plugins.lsplugin.resopt)
 }
 
-val moduleName = "LSPosed"
-val moduleBaseId = "lsposed"
-val authors = "LSPosed Developers"
+val moduleName = "MLSPosed"
+val moduleBaseId = "mlsposed"
+val authors = "MLSPosed Developers"
 
-val riruModuleId = "lsposed"
+val riruModuleId = "mlsposed"
 val moduleMinRiruApiVersion = 26
 val moduleMinRiruVersionName = "26.1.7"
 val moduleMaxRiruApiVersion = 26
@@ -53,7 +36,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "org.lsposed.lspd"
+        applicationId = "org.mliboot.mlspd"
         multiDexEnabled = false
 
         buildConfigField(
@@ -106,7 +89,7 @@ android {
             }
         }
     }
-    namespace = "org.lsposed.lspd"
+    namespace = "org.mliboot.mlspd"
 }
 abstract class Injected @Inject constructor(val magiskDir: String) {
     @get:Inject
@@ -333,7 +316,7 @@ val openApp = task<Exec>("openApp") {
     group = "LSPosed"
     commandLine(
         adb, "shell",
-        "am", "start", "-c", "org.lsposed.manager.LAUNCH_MANAGER",
+        "am", "start", "-c", "org.mliboot.mlsp.manager.LAUNCH_MANAGER",
         "com.android.shell/.BugreportWarningActivity"
     )
 }

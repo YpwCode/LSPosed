@@ -1,26 +1,8 @@
-/*
- * This file is part of LSPosed.
- *
- * LSPosed is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * LSPosed is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with LSPosed.  If not, see <https://www.gnu.org/licenses/>.
- *
- * Copyright (C) 2020 EdXposed Contributors
- * Copyright (C) 2021 - 2022 LSPosed Contributors
- */
+
 
 package de.robv.android.xposed;
 
-import static org.lsposed.lspd.core.ApplicationServiceClient.serviceClient;
+import static org.mliboot.mlspd.core.ApplicationServiceClient.serviceClient;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -31,8 +13,8 @@ import android.util.Log;
 
 import com.android.internal.util.XmlUtils;
 
-import org.lsposed.lspd.core.BuildConfig;
-import org.lsposed.lspd.util.MetaDataReader;
+import org.mliboot.mlspd.core.BuildConfig;
+import org.mliboot.mlspd.util.MetaDataReader;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;

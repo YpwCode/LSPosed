@@ -1,4 +1,4 @@
-package org.lsposed.manager.util;
+package org.mliboot.mlsp.manager.util;
 
 import android.app.Application;
 

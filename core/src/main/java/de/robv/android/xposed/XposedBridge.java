@@ -1,22 +1,4 @@
-/*
- * This file is part of LSPosed.
- *
- * LSPosed is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * LSPosed is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with LSPosed.  If not, see <https://www.gnu.org/licenses/>.
- *
- * Copyright (C) 2020 EdXposed Contributors
- * Copyright (C) 2021 - 2022 LSPosed Contributors
- */
+
 
 package de.robv.android.xposed;
 
@@ -25,10 +7,10 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.util.Log;
 
-import org.lsposed.lspd.impl.LSPosedBridge;
-import org.lsposed.lspd.impl.LSPosedHookCallback;
-import org.lsposed.lspd.nativebridge.HookBridge;
-import org.lsposed.lspd.nativebridge.ResourcesHook;
+import org.mliboot.mlspd.impl.LSPosedBridge;
+import org.mliboot.mlspd.impl.LSPosedHookCallback;
+import org.mliboot.mlspd.nativebridge.HookBridge;
+import org.mliboot.mlspd.nativebridge.ResourcesHook;
 
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Executable;
@@ -44,7 +26,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-import io.github.libxposed.api.XposedInterface;
+import org.mliboot.libxp.api.IXpInter;
 
 /**
  * This class contains most of Xposed's central logic, such as initialization and callbacks used by
@@ -120,8 +102,8 @@ public final class XposedBridge {
             ClassLoader myCL = XposedBridge.class.getClassLoader();
             assert myCL != null;
             dummyClassLoader = ResourcesHook.buildDummyClassLoader(myCL.getParent(), resClass.getName(), taClass.getName());
-            dummyClassLoader.loadClass("xposed.dummy.XResourcesSuperClass");
-            dummyClassLoader.loadClass("xposed.dummy.XTypedArraySuperClass");
+            dummyClassLoader.loadClass("xp.dummy.XResourcesSuperClass");
+            dummyClassLoader.loadClass("xp.dummy.XTypedArraySuperClass");
             XposedHelpers.setObjectField(myCL, "parent", dummyClassLoader);
         } catch (Throwable throwable) {
             XposedBridge.log(throwable);
@@ -133,7 +115,7 @@ public final class XposedBridge {
      * Returns the currently installed version of the Xposed framework.
      */
     public static int getXposedVersion() {
-        return XposedInterface.API;
+        return IXpInter.API;
     }
 
     /**

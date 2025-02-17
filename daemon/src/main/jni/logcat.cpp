@@ -326,7 +326,7 @@ void Logcat::Run() {
 extern "C"
 JNIEXPORT void JNICALL
 // NOLINTNEXTLINE
-Java_org_lsposed_lspd_service_LogcatService_runLogcat(JNIEnv *env, jobject thiz) {
+Java_org_mliboot_mlspd_service_LogcatService_runLogcat(JNIEnv *env, jobject thiz) {
     jclass clazz = env->GetObjectClass(thiz);
     jmethodID method = env->GetMethodID(clazz, "refreshFd", "(Z)I");
     Logcat logcat(env, thiz, method);
