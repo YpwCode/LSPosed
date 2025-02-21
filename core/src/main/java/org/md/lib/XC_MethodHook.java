@@ -1,13 +1,13 @@
 
 
-package de.robv.android.xposed;
+package org.md.lib;
 
 import java.lang.reflect.Executable;
 import java.lang.reflect.Member;
 import java.util.HashMap;
 
-import de.robv.android.xposed.callbacks.IXUnhook;
-import de.robv.android.xposed.callbacks.XCallback;
+import org.md.lib.callbacks.IXUnhook;
+import org.md.lib.callbacks.XCallback;
 
 /**
  * Callback class for method hooks.

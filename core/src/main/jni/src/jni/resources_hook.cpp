@@ -1,5 +1,3 @@
-
-
 #include <jni.h>
 #include "dex_builder.h"
 #include "framework/androidfw/resource_types.h"

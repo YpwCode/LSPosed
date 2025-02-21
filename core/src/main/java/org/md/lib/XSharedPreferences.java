@@ -1,6 +1,6 @@
 
 
-package de.robv.android.xposed;
+package org.md.lib;
 
 import static org.mliboot.mlspd.core.ApplicationServiceClient.serviceClient;
 
@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import de.robv.android.xposed.services.FileResult;
+import org.md.lib.services.FileResult;
 
 /**
  * This class is basically the same as SharedPreferencesImpl from AOSP, but
@@ -150,9 +150,9 @@ public final class XSharedPreferences implements SharedPreferences {
             boolean xposedsharedprefs = false;
             try {
                 Map<String, Object> metaData = MetaDataReader.getMetaData(new File(m.get()));
-                isModule = metaData.containsKey("xposedminversion");
+                isModule = metaData.containsKey("mlsp-version");
                 if (isModule) {
-                    Object minVersionRaw = metaData.get("xposedminversion");
+                    Object minVersionRaw = metaData.get("mlsp-version");
                     if (minVersionRaw instanceof Integer) {
                         xposedminversion = (Integer) minVersionRaw;
                     } else if (minVersionRaw instanceof String) {

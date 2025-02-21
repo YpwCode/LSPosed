@@ -766,7 +766,7 @@ public class ConfigManager {
                 return false;
             }
             try (var zip = new ZipFile(toGlobalNamespace(apk))) {
-                return zip.getEntry("META-INF/xposed/java_init.list") != null || zip.getEntry("assets/xposed_init") != null;
+                return zip.getEntry("META-INF/xposed/java_init.list") != null || zip.getEntry("assets/mlspd_init") != null;
             } catch (IOException e) {
                 return false;
             }
@@ -775,6 +775,7 @@ public class ConfigManager {
     }
 
     public boolean updateModuleApkPath(String packageName, String apkPath, boolean force) {
+        Log.d(TAG, "updateModuleApkPath: packageName="+packageName);
         if (apkPath == null || packageName.equals("lspd")) return false;
         if (db.inTransaction()) {
             Log.w(TAG, "update module apk path should not be called inside transaction");
@@ -786,6 +787,7 @@ public class ConfigManager {
         values.put("apk_path", apkPath);
         // insert or update in two step since insert or replace will change the autoincrement mid
         int count = (int) db.insertWithOnConflict("modules", null, values, SQLiteDatabase.CONFLICT_IGNORE);
+        Log.d(TAG, "updateModuleApkPath: count="+count);
         if (count < 0) {
             var cached = cachedModule.getOrDefault(packageName, null);
             if (force || cached == null || cached.apkPath == null || !cached.apkPath.equals(apkPath))
@@ -948,11 +950,16 @@ public class ConfigManager {
 
     public boolean enableModule(String packageName) throws RemoteException {
         if (packageName.equals("lspd")) return false;
+        Log.d(TAG, "enableModule: 953");
         PackageInfo pkgInfo = PackageService.getPackageInfoFromAllUsers(packageName, PackageService.MATCH_ALL_FLAGS).values().stream().findFirst().orElse(null);
+        Log.d(TAG, "enableModule: 955" + pkgInfo);
         if (pkgInfo == null || pkgInfo.applicationInfo == null) return false;
+        Log.d(TAG, "enableModule: 957");
         var modulePath = getModuleApkPath(pkgInfo.applicationInfo);
         if (modulePath == null) return false;
+        Log.d(TAG, "enableModule: 960" + modulePath);
         boolean changed = updateModuleApkPath(packageName, modulePath, false);
+        Log.d(TAG, "ConfigManager - enableModule: changed="+changed);
         changed = executeInTransaction(() -> {
             ContentValues values = new ContentValues();
             values.put("enabled", 1);

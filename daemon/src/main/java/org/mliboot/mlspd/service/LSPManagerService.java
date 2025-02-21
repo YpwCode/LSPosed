@@ -376,6 +376,7 @@ public class LSPManagerService extends ILSPManagerService.Stub {
 
     @Override
     public boolean enableModule(String packageName) throws RemoteException {
+        Log.d(TAG, "Lspmanagerservice - enableModule: " + packageName);
         return ConfigManager.getInstance().enableModule(packageName);
     }
 

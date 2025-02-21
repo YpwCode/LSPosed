@@ -9,9 +9,9 @@ import androidx.annotation.NonNull;
 import org.mliboot.mlspd.impl.LSPosedContext;
 import org.mliboot.mlspd.util.Hookers;
 
-import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XposedInit;
-import de.robv.android.xposed.callbacks.XC_LoadPackage;
+import org.md.lib.XposedBridge;
+import org.md.lib.XposedInit;
+import org.md.lib.callbacks.XC_LoadPackage;
 import org.mliboot.libxp.api.IXpInter;
 import org.mliboot.libxp.api.IXpModuleInter;
 import org.mliboot.libxp.api.annotations.BeforeInvocation;

@@ -149,6 +149,7 @@ public class LSPNotificationManager {
         nm.createNotificationChannelsForPackage("android", 1000, new ParceledListSlice<>(list));
     }
 
+    // TODO: 2025/2/19 星期三 创建通知栏入口
     static void notifyStatusNotification() {
         var intent = new Intent(openManagerAction);
         intent.setPackage("android");
@@ -164,7 +165,7 @@ public class LSPNotificationManager {
                 .setOngoing(true)
                 .setAutoCancel(false)
                 .build();
-        notification.extras.putString("android.substName", "LSPosed");
+        notification.extras.putString("android.substName", "MLspd");
         try {
             var nm = getNotificationManager();
             createNotificationChannel(nm);

@@ -1,6 +1,4 @@
-
-
-package de.robv.android.xposed;
+package org.md.lib;
 
 import android.app.ActivityThread;
 import android.content.res.Resources;
@@ -24,8 +22,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import de.robv.android.xposed.callbacks.XC_InitPackageResources;
-import de.robv.android.xposed.callbacks.XC_LoadPackage;
+import org.md.lib.callbacks.XC_InitPackageResources;
+import org.md.lib.callbacks.XC_LoadPackage;
 import org.mliboot.libxp.api.IXpInter;
 
 /**

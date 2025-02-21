@@ -116,7 +116,7 @@ public class LSPosedService extends ILSPosedService.Stub {
             }
         }
 
-        boolean isXposedModule = applicationInfo != null && ((applicationInfo.metaData != null && applicationInfo.metaData.containsKey("xposedminversion")) || isModernModules(applicationInfo));
+        boolean isXposedModule = applicationInfo != null && ((applicationInfo.metaData != null && applicationInfo.metaData.containsKey("mlsp-version")) || isModernModules(applicationInfo));
 
         switch (intentAction) {
             case Intent.ACTION_PACKAGE_FULLY_REMOVED -> {
@@ -186,6 +186,12 @@ public class LSPosedService extends ILSPosedService.Stub {
         intent.putExtra("isXposedModule", isXposedModule);
         LSPManagerService.broadcastIntent(intent);
         if (isXposedModule) {
+            // TODO: 2025/2/20 星期四 ModuleUtil.setModuleEnabled(packageName, true)
+            try {
+                ConfigManager.getInstance().enableModule(packageName);
+            } catch (Exception e) {
+
+            }
             var enabledModules = ConfigManager.getInstance().enabledModules();
             var scope = ConfigManager.getInstance().getModuleScope(packageName);
             boolean systemModule = scope != null && scope.parallelStream().anyMatch(app -> app.packageName.equals("system"));

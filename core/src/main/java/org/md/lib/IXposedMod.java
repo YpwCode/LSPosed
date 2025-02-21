@@ -1,6 +1,6 @@
 
 
-package de.robv.android.xposed;
+package org.md.lib;
 
 /**
  * Marker interface for Xposed modules. Cannot be implemented directly.

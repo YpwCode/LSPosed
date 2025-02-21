@@ -1,5 +1,5 @@
 id=${moduleId}
-name=${api} - MLSPosed
+name=${api} - MLSPosed - 001
 version=${versionName} (${versionCode})
 versionCode=${versionCode}
 author=${authorList}

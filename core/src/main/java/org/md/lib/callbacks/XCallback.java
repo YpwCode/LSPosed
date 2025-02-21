@@ -1,6 +1,6 @@
 
 
-package de.robv.android.xposed.callbacks;
+package org.md.lib.callbacks;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import org.mliboot.mlspd.deopt.PrebuiltMethodsDeopter;
 
 import java.io.Serializable;
 
-import de.robv.android.xposed.XposedBridge;
+import org.md.lib.XposedBridge;
 
 /**
  * Base class for Xposed callbacks.

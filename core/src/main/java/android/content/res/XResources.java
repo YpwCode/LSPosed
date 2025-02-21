@@ -3,12 +3,12 @@
 package android.content.res;
 
 import static org.mliboot.mlspd.nativebridge.ResourcesHook.rewriteXmlReferencesNative;
-import static de.robv.android.xposed.XposedHelpers.decrementMethodDepth;
-import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-import static de.robv.android.xposed.XposedHelpers.getBooleanField;
-import static de.robv.android.xposed.XposedHelpers.getLongField;
-import static de.robv.android.xposed.XposedHelpers.getObjectField;
-import static de.robv.android.xposed.XposedHelpers.incrementMethodDepth;
+import static org.md.lib.XposedHelpers.decrementMethodDepth;
+import static org.md.lib.XposedHelpers.findAndHookMethod;
+import static org.md.lib.XposedHelpers.getBooleanField;
+import static org.md.lib.XposedHelpers.getLongField;
+import static org.md.lib.XposedHelpers.getObjectField;
+import static org.md.lib.XposedHelpers.incrementMethodDepth;
 
 import android.content.Context;
 import android.content.pm.PackageParser;
@@ -40,15 +40,15 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.WeakHashMap;
 
-import de.robv.android.xposed.IXposedHookZygoteInit;
-import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XC_MethodHook.MethodHookParam;
-import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XposedBridge.CopyOnWriteSortedSet;
-import de.robv.android.xposed.XposedInit;
-import de.robv.android.xposed.callbacks.XC_LayoutInflated;
-import de.robv.android.xposed.callbacks.XC_LayoutInflated.LayoutInflatedParam;
-import de.robv.android.xposed.callbacks.XCallback;
+import org.md.lib.IXposedHookZygoteInit;
+import org.md.lib.XC_MethodHook;
+import org.md.lib.XC_MethodHook.MethodHookParam;
+import org.md.lib.XposedBridge;
+import org.md.lib.XposedBridge.CopyOnWriteSortedSet;
+import org.md.lib.XposedInit;
+import org.md.lib.callbacks.XC_LayoutInflated;
+import org.md.lib.callbacks.XC_LayoutInflated.LayoutInflatedParam;
+import org.md.lib.callbacks.XCallback;
 import xp.dummy.XResourcesSuperClass;
 import xp.dummy.XTypedArraySuperClass;
 

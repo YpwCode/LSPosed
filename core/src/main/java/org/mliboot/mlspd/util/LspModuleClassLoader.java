@@ -1,6 +1,6 @@
 package org.mliboot.mlspd.util;
 
-import static de.robv.android.xposed.XposedBridge.TAG;
+import static org.md.lib.XposedBridge.TAG;
 
 import android.os.Build;
 import android.os.SharedMemory;

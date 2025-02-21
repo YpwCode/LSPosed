@@ -8,8 +8,8 @@ import android.util.Log;
 
 import org.mliboot.mlspd.util.Hookers;
 
-import de.robv.android.xposed.XposedHelpers;
-import de.robv.android.xposed.XposedInit;
+import org.md.lib.XposedHelpers;
+import org.md.lib.XposedInit;
 import org.mliboot.libxp.api.IXpInter;
 import org.mliboot.libxp.api.annotations.AfterInvocation;
 import org.mliboot.libxp.api.annotations.XpHandler;

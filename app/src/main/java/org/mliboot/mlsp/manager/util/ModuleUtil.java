@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 
 public final class ModuleUtil {
-    // xposedminversion below this
+    // mlsp-version below this
     public static int MIN_MODULE_VERSION = 2; // reject modules with
     private static ModuleUtil instance = null;
     private final PackageManager pm;
@@ -101,7 +101,7 @@ public final class ModuleUtil {
     }
 
     public static boolean isLegacyModule(ApplicationInfo info) {
-        return info.metaData != null && info.metaData.containsKey("xposedminversion");
+        return info.metaData != null && info.metaData.containsKey("mlsp-version");
     }
 
     synchronized public void reloadInstalledModules() {
@@ -260,7 +260,7 @@ public final class ModuleUtil {
             legacy = modernModuleApk == null;
 
             if (legacy) {
-                Object minVersionRaw = app.metaData.get("xposedminversion");
+                Object minVersionRaw = app.metaData.get("mlsp-version");
                 if (minVersionRaw instanceof Integer) {
                     minVersion = (Integer) minVersionRaw;
                 } else if (minVersionRaw instanceof String) {
@@ -314,7 +314,7 @@ public final class ModuleUtil {
             if (this.description != null) return this.description;
             String descriptionTmp = "";
             if (legacy) {
-                Object descriptionRaw = app.metaData.get("xposeddescription");
+                Object descriptionRaw = app.metaData.get("mlsp-desc");
                 if (descriptionRaw instanceof String) {
                     descriptionTmp = ((String) descriptionRaw).trim();
                 } else if (descriptionRaw instanceof Integer) {
@@ -333,15 +333,16 @@ public final class ModuleUtil {
             return this.description;
         }
 
+        // TODO: 2025/2/20 星期四 获取目标app
         public List<String> getScopeList() {
             if (scopeList != null) return scopeList;
             List<String> list = null;
             try {
-                int scopeListResourceId = app.metaData.getInt("xposedscope");
+                int scopeListResourceId = app.metaData.getInt("mlspdTarget");
                 if (scopeListResourceId != 0) {
                     list = Arrays.asList(pm.getResourcesForApplication(app).getStringArray(scopeListResourceId));
                 } else {
-                    String scopeListString = app.metaData.getString("xposedscope");
+                    String scopeListString = app.metaData.getString("mlspdTarget");
                     if (scopeListString != null)
                         list = Arrays.asList(scopeListString.split(";"));
                 }

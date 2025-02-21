@@ -1,4 +1,3 @@
-
 #ifndef SANDHOOK_ELF_UTIL_H
 #define SANDHOOK_ELF_UTIL_H
 

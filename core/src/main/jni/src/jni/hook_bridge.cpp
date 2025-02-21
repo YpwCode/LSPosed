@@ -1,5 +1,3 @@
-
-
 #include "hook_bridge.h"
 #include "native_util.h"
 #include "lsplant.hpp"

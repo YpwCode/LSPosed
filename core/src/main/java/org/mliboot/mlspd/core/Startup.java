@@ -24,8 +24,8 @@ import org.mliboot.mlspd.util.Utils;
 import java.util.List;
 
 import dalvik.system.DexFile;
-import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XposedInit;
+import org.md.lib.XposedBridge;
+import org.md.lib.XposedInit;
 
 public class Startup {
     private static void startBootstrapHook(boolean isSystem) {

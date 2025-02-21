@@ -13,7 +13,7 @@ import org.mliboot.mlspd.util.Utils;
 import java.lang.reflect.Executable;
 import java.util.Arrays;
 
-import de.robv.android.xposed.XposedHelpers;
+import org.md.lib.XposedHelpers;
 
 public class PrebuiltMethodsDeopter {
 

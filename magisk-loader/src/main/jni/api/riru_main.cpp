@@ -1,5 +1,3 @@
-
-
 #include <jni.h>
 #include <cstring>
 #include <cstdlib>

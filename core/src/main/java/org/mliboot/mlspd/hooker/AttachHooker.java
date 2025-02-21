@@ -2,7 +2,7 @@ package org.mliboot.mlspd.hooker;
 
 import android.app.ActivityThread;
 
-import de.robv.android.xposed.XposedInit;
+import org.md.lib.XposedInit;
 import org.mliboot.libxp.api.IXpInter;
 import org.mliboot.libxp.api.annotations.AfterInvocation;
 import org.mliboot.libxp.api.annotations.XpHandler;

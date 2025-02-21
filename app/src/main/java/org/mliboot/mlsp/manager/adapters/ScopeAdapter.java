@@ -22,6 +22,7 @@ import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -112,6 +113,7 @@ public class ScopeAdapter extends EmptyStateRecyclerView.EmptyStateAdapter<Scope
     private final OnMainSwitchChangeListener switchBarOnCheckedChangeListener = new OnMainSwitchChangeListener() {
         @Override
         public void onSwitchChanged(Switch view, boolean isChecked) {
+            Log.d("TAG", "onSwitchChanged: isChecked="+isChecked);
             enabled = isChecked;
             if (!moduleUtil.setModuleEnabled(module.packageName, isChecked)) {
                 view.setChecked(!isChecked);

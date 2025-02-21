@@ -41,7 +41,6 @@ import org.mliboot.libxp.api.IXpModuleInter;
 import org.mliboot.libxp.api.errors.XpFrameworkError;
 import org.mliboot.libxp.api.utils.DexParser;
 
-
 @SuppressLint("NewApi")
 public class LSPosedContext implements IXpInter {
 

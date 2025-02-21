@@ -1,5 +1,3 @@
-
-
 #include <jni.h>
 
 #include "config.h"

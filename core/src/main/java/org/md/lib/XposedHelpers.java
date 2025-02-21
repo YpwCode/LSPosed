@@ -1,6 +1,6 @@
 
 
-package de.robv.android.xposed;
+package org.md.lib;
 
 import android.content.res.AssetManager;
 import android.content.res.Resources;

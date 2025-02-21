@@ -25,12 +25,12 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XC_MethodReplacement;
-import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XposedHelpers;
-import de.robv.android.xposed.XposedInit;
-import de.robv.android.xposed.callbacks.XC_LoadPackage;
+import org.md.lib.XC_MethodHook;
+import org.md.lib.XC_MethodReplacement;
+import org.md.lib.XposedBridge;
+import org.md.lib.XposedHelpers;
+import org.md.lib.XposedInit;
+import org.md.lib.callbacks.XC_LoadPackage;
 import org.mliboot.libxp.api.IXpInter;
 import org.mliboot.libxp.api.IXpModuleInter;
 import org.mliboot.libxp.api.annotations.AfterInvocation;
@@ -158,7 +158,7 @@ public class LoadedApkCreateCLHooker implements IXpInter.Hooker {
         boolean xposedsharedprefs = false;
         try {
             Map<String, Object> metaData = MetaDataReader.getMetaData(new File(lpparam.appInfo.sourceDir));
-            Object minVersionRaw = metaData.get("xposedminversion");
+            Object minVersionRaw = metaData.get("mlsp-version");
             if (minVersionRaw instanceof Integer) {
                 xposedminversion = (Integer) minVersionRaw;
             } else if (minVersionRaw instanceof String) {

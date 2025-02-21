@@ -1,12 +1,12 @@
 
 
-package de.robv.android.xposed.callbacks;
+package org.md.lib.callbacks;
 
 import android.content.pm.ApplicationInfo;
 
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import de.robv.android.xposed.IXposedHookLoadPackage;
+import org.md.lib.IXposedHookLoadPackage;
 
 /**
  * This class is only used for internal purposes, except for the {@link LoadPackageParam}

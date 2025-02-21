@@ -1,15 +1,15 @@
 
 
-package de.robv.android.xposed;
+package org.md.lib;
 
 import static org.mliboot.mlspd.core.ApplicationServiceClient.serviceClient;
 import static org.mliboot.mlspd.deopt.PrebuiltMethodsDeopter.deoptResourceMethods;
-import static de.robv.android.xposed.XposedBridge.hookAllMethods;
-import static de.robv.android.xposed.XposedHelpers.callMethod;
-import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-import static de.robv.android.xposed.XposedHelpers.getObjectField;
-import static de.robv.android.xposed.XposedHelpers.getParameterIndexByType;
-import static de.robv.android.xposed.XposedHelpers.setStaticObjectField;
+import static org.md.lib.XposedBridge.hookAllMethods;
+import static org.md.lib.XposedHelpers.callMethod;
+import static org.md.lib.XposedHelpers.findAndHookMethod;
+import static org.md.lib.XposedHelpers.getObjectField;
+import static org.md.lib.XposedHelpers.getParameterIndexByType;
+import static org.md.lib.XposedHelpers.setStaticObjectField;
 
 import android.app.ActivityThread;
 import android.content.pm.ApplicationInfo;
@@ -40,8 +40,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import de.robv.android.xposed.callbacks.XC_InitPackageResources;
-import de.robv.android.xposed.callbacks.XCallback;
+import org.md.lib.callbacks.XC_InitPackageResources;
+import org.md.lib.callbacks.XCallback;
 import hidden.HiddenApiBridge;
 
 public final class XposedInit {
