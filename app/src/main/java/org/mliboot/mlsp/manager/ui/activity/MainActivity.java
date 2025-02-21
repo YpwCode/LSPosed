@@ -54,11 +54,10 @@ import java.util.Objects;
 
 import rikka.core.util.ResourceUtils;
 
-public class MainActivity extends BaseActivity implements RepoLoader.RepoListener, ModuleUtil.ModuleListener {
+public class MainActivity extends BaseActivity implements ModuleUtil.ModuleListener {
     private static final String KEY_PREFIX = MainActivity.class.getName() + '.';
     private static final String EXTRA_SAVED_INSTANCE_STATE = KEY_PREFIX + "SAVED_INSTANCE_STATE";
 
-    private static final RepoLoader repoLoader = RepoLoader.getInstance();
     private static final ModuleUtil moduleUtil = ModuleUtil.getInstance();
 
     private boolean restarting;
@@ -85,7 +84,6 @@ public class MainActivity extends BaseActivity implements RepoLoader.RepoListene
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        repoLoader.addListener(this);
         moduleUtil.addListener(this);
 
         onModulesReloaded();
@@ -125,11 +123,6 @@ public class MainActivity extends BaseActivity implements RepoLoader.RepoListene
                 switch (intent.getDataString()) {
                     case "modules" -> nav.setSelectedItemId(R.id.modules_nav);
                     case "logs" -> nav.setSelectedItemId(R.id.logs_fragment);
-                    case "repo" -> {
-                        if (ConfigManager.isMagiskInstalled()) {
-                            nav.setSelectedItemId(R.id.repo_nav);
-                        }
-                    }
                     case "settings" -> nav.setSelectedItemId(R.id.settings_fragment);
                     default -> {
                         var data = intent.getData();
@@ -193,49 +186,8 @@ public class MainActivity extends BaseActivity implements RepoLoader.RepoListene
         return restarting || super.dispatchGenericMotionEvent(event);
     }
 
-
-    @Override
-    public void onRepoLoaded() {
-        final int[] count = new int[]{0};
-        HashSet<String> processedModules = new HashSet<>();
-        var modules = moduleUtil.getModules();
-        if (modules == null) return;
-        modules.forEach((k, v) -> {
-                    if (!processedModules.contains(k.first)) {
-                        var ver = repoLoader.getModuleLatestVersion(k.first);
-                        if (ver != null && ver.upgradable(v.versionCode, v.versionName)) {
-                            ++count[0];
-                        }
-                        processedModules.add(k.first);
-                    }
-                }
-        );
-        runOnUiThread(() -> {
-            if (count[0] > 0 && binding != null) {
-                var nav = (NavigationBarView) binding.nav;
-                var badge = nav.getOrCreateBadge(R.id.repo_nav);
-                badge.setVisible(true);
-                badge.setNumber(count[0]);
-            } else {
-                onThrowable(null);
-            }
-        });
-    }
-
-    @Override
-    public void onThrowable(Throwable t) {
-        runOnUiThread(() -> {
-            if (binding != null) {
-                var nav = (NavigationBarView) binding.nav;
-                var badge = nav.getOrCreateBadge(R.id.repo_nav);
-                badge.setVisible(false);
-            }
-        });
-    }
-
     @Override
     public void onModulesReloaded() {
-        onRepoLoaded();
         setModulesSummary(moduleUtil.getEnabledModulesCount());
     }
 
@@ -255,9 +207,6 @@ public class MainActivity extends BaseActivity implements RepoLoader.RepoListene
             if (!ConfigManager.isBinderAlive()) {
                 nav.getMenu().removeItem(R.id.logs_fragment);
                 nav.getMenu().removeItem(R.id.modules_nav);
-                if (!ConfigManager.isMagiskInstalled()) {
-                    nav.getMenu().removeItem(R.id.repo_nav);
-                }
             }
         }
         if (App.isParasitic) {
@@ -286,7 +235,6 @@ public class MainActivity extends BaseActivity implements RepoLoader.RepoListene
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        repoLoader.removeListener(this);
         moduleUtil.removeListener(this);
     }
 }
