@@ -1,4 +1,4 @@
--keep class de.robv.android.xposed.** {*;}
+-keep class org.md.xlib.** {*;}
 -keep class org.mliboot.libxp.** {*;}
 -keepattributes RuntimeVisibleAnnotations
 -keep class android.** { *; }

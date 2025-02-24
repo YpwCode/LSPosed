@@ -37,10 +37,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.md.lib.XC_MethodHook;
-import org.md.lib.XC_MethodReplacement;
-import org.md.lib.XposedBridge;
-import org.md.lib.XposedHelpers;
+import org.md.xlib.XC_MethodHook;
+import org.md.xlib.XC_MethodReplacement;
+import org.md.xlib.XposedBridge;
+import org.md.xlib.XposedHelpers;
 import hidden.HiddenApiBridge;
 
 public class ParasiticManagerHooker {

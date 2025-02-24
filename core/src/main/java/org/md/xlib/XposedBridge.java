@@ -1,4 +1,4 @@
-package org.md.lib;
+package org.md.xlib;
 
 import android.app.ActivityThread;
 import android.content.res.Resources;
@@ -22,8 +22,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import org.md.lib.callbacks.XC_InitPackageResources;
-import org.md.lib.callbacks.XC_LoadPackage;
+import org.md.xlib.callbacks.XC_InitPackageResources;
+import org.md.xlib.callbacks.XC_LoadPackage;
 import org.mliboot.libxp.api.IXpInter;
 
 /**

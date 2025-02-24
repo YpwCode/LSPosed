@@ -1,9 +1,9 @@
-package org.md.lib;
+package org.md.xlib;
 
 import android.app.Application;
 
-import org.md.lib.callbacks.XC_LoadPackage;
-import org.md.lib.callbacks.XC_LoadPackage.LoadPackageParam;
+import org.md.xlib.callbacks.XC_LoadPackage;
+import org.md.xlib.callbacks.XC_LoadPackage.LoadPackageParam;
 
 /**
  * Get notified when an app ("Android package") is loaded.

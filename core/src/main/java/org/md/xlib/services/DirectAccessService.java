@@ -1,6 +1,4 @@
-
-
-package org.md.lib.services;
+package org.md.xlib.services;
 
 import java.io.BufferedInputStream;
 import java.io.File;

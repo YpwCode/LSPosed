@@ -1,5 +1,3 @@
-
-
 package org.mliboot.mlsp.manager.adapters;
 
 import android.annotation.SuppressLint;
@@ -22,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class AppHelper {
 
-    public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
+    public static final String SETTINGS_CATEGORY = "org.md.xlib.category.MODULE_SETTINGS";
     public static final int FLAG_SHOW_FOR_ALL_USERS = 0x0400;
     private static List<String> denyList;
     private static List<PackageInfo> appList;

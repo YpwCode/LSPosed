@@ -1,5 +1,3 @@
-
-
 package org.mliboot.mlspd.service;
 
 import static org.mliboot.mlspd.service.PackageService.MATCH_ALL_FLAGS;
@@ -12,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageParser;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -38,6 +37,7 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.mliboot.daemon.BuildConfig;
 import org.mliboot.mlspd.models.Application;
 import org.mliboot.mlspd.models.Module;
+import org.mliboot.mlspd.util.FakeContext;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -822,7 +822,8 @@ public class ConfigManager {
 
     public boolean setModuleScope(String packageName, List<Application> scopes) throws RemoteException {
         if (scopes == null) return false;
-        enableModule(packageName);
+        var enable = enableModule(packageName);
+        Log.d(TAG, "enableModule:" + enable);
         int mid = getModuleId(packageName);
         if (mid == -1) return false;
         executeInTransaction(() -> {
@@ -950,16 +951,11 @@ public class ConfigManager {
 
     public boolean enableModule(String packageName) throws RemoteException {
         if (packageName.equals("lspd")) return false;
-        Log.d(TAG, "enableModule: 953");
         PackageInfo pkgInfo = PackageService.getPackageInfoFromAllUsers(packageName, PackageService.MATCH_ALL_FLAGS).values().stream().findFirst().orElse(null);
-        Log.d(TAG, "enableModule: 955" + pkgInfo);
         if (pkgInfo == null || pkgInfo.applicationInfo == null) return false;
-        Log.d(TAG, "enableModule: 957");
         var modulePath = getModuleApkPath(pkgInfo.applicationInfo);
         if (modulePath == null) return false;
-        Log.d(TAG, "enableModule: 960" + modulePath);
         boolean changed = updateModuleApkPath(packageName, modulePath, false);
-        Log.d(TAG, "ConfigManager - enableModule: changed="+changed);
         changed = executeInTransaction(() -> {
             ContentValues values = new ContentValues();
             values.put("enabled", 1);
@@ -972,6 +968,62 @@ public class ConfigManager {
         } else {
             return false;
         }
+    }
+
+    public boolean autoEnableModule(String packageName) {
+        try {
+            // TODO: 2025/2/21 星期五 自动获取 scope 列表
+            var pk = PackageService.getPackageInfo(packageName, PackageManager.GET_META_DATA, 0);
+            var appInfo = pk.applicationInfo;
+            var scopeList = getScopeList(appInfo);
+            var scopes = new ArrayList<Application>(scopeList.size());
+            for (String s : scopeList) {
+                var app = new Application();
+                app.packageName = s;
+                scopes.add(app);
+            }
+            return setModuleScope(packageName, scopes);
+//            PackageInfo pkgInfo = PackageService.getPackageInfoFromAllUsers(packageName, PackageService.MATCH_ALL_FLAGS).values().stream().findFirst().orElse(null);
+//            if (pkgInfo == null || pkgInfo.applicationInfo == null) return false;
+//            var appInfo = pkgInfo.applicationInfo;
+//            Log.d(TAG, "autoEnableModule = appInfo:" + appInfo);
+//            var scopeList = getScopeList(appInfo);
+//            Log.d(TAG, "autoEnableModule = scopeList:" + scopeList);
+//            var scopes = new ArrayList<Application>(scopeList.size());
+//            for (String s : scopeList) {
+//                var app = new Application();
+//                app.packageName = s;
+//                scopes.add(app);
+//            }
+//            Log.d(TAG, "autoEnableModule = scopes:" + scopes);
+//            return setModuleScope(packageName, scopes);
+        } catch (Exception ignored) {
+            ignored.printStackTrace();
+        }
+        return false;
+    }
+
+    // TODO: 2025/2/20 星期四 获取目标app
+    public List<String> getScopeList(ApplicationInfo app) {
+        List<String> list = null;
+        Log.d(TAG, "getScopeList: metaData="+app.metaData);
+        String scopeListString = app.metaData.getString("mlspd-target");
+        Log.d(TAG, "getScopeList: scopeListString="+scopeListString);
+        if (scopeListString != null) {
+            list = Arrays.asList(scopeListString.split(";"));
+        }
+        if (list != null) {
+            //For historical reasons, legacy modules use the opposite name.
+            //https://github.com/rovo89/XposedBridge/commit/6b49688c929a7768f3113b4c65b429c7a7032afa
+            list.replaceAll(s ->
+                    switch (s) {
+                        case "android" -> "system";
+                        case "system" -> "android";
+                        default -> s;
+                    }
+            );
+        }
+        return list != null ? list : Collections.emptyList();
     }
 
     public void updateCache() {

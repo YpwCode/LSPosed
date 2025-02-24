@@ -1,9 +1,9 @@
-package org.md.lib;
+package org.md.xlib;
 
 import android.content.res.XResources;
 
-import org.md.lib.callbacks.XC_InitPackageResources;
-import org.md.lib.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
+import org.md.xlib.callbacks.XC_InitPackageResources;
+import org.md.xlib.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 
 /**
  * Get notified when the resources for an app are initialized.

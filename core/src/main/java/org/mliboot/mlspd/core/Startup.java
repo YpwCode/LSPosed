@@ -1,5 +1,3 @@
-
-
 package org.mliboot.mlspd.core;
 
 import android.app.ActivityThread;
@@ -24,8 +22,8 @@ import org.mliboot.mlspd.util.Utils;
 import java.util.List;
 
 import dalvik.system.DexFile;
-import org.md.lib.XposedBridge;
-import org.md.lib.XposedInit;
+import org.md.xlib.XposedBridge;
+import org.md.xlib.XposedInit;
 
 public class Startup {
     private static void startBootstrapHook(boolean isSystem) {

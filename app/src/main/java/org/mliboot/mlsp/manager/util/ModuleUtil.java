@@ -17,8 +17,6 @@ import androidx.core.util.Pair;
 import org.mliboot.mlspd.models.UserInfo;
 import org.mliboot.mlsp.manager.App;
 import org.mliboot.mlsp.manager.ConfigManager;
-import org.mliboot.mlsp.manager.repo.RepoLoader;
-import org.mliboot.mlsp.manager.repo.model.OnlineModule;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -347,12 +345,6 @@ public final class ModuleUtil {
                         list = Arrays.asList(scopeListString.split(";"));
                 }
             } catch (Exception ignored) {
-            }
-            if (list == null) {
-                OnlineModule module = RepoLoader.getInstance().getOnlineModule(packageName);
-                if (module != null && module.getScope() != null) {
-                    list = module.getScope();
-                }
             }
             if (list != null) {
                 //For historical reasons, legacy modules use the opposite name.

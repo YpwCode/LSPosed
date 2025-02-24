@@ -1,6 +1,4 @@
-
-
-package org.md.lib.callbacks;
+package org.md.xlib.callbacks;
 
 import android.os.Bundle;
 
@@ -8,7 +6,7 @@ import org.mliboot.mlspd.deopt.PrebuiltMethodsDeopter;
 
 import java.io.Serializable;
 
-import org.md.lib.XposedBridge;
+import org.md.xlib.XposedBridge;
 
 /**
  * Base class for Xposed callbacks.

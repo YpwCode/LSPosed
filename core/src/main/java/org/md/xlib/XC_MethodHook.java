@@ -1,13 +1,11 @@
-
-
-package org.md.lib;
+package org.md.xlib;
 
 import java.lang.reflect.Executable;
 import java.lang.reflect.Member;
 import java.util.HashMap;
 
-import org.md.lib.callbacks.IXUnhook;
-import org.md.lib.callbacks.XCallback;
+import org.md.xlib.callbacks.IXUnhook;
+import org.md.xlib.callbacks.XCallback;
 
 /**
  * Callback class for method hooks.

@@ -1,8 +1,6 @@
+package org.md.xlib.callbacks;
 
-
-package org.md.lib.callbacks;
-
-import org.md.lib.IXposedHookZygoteInit;
+import org.md.xlib.IXposedHookZygoteInit;
 
 /**
  * Interface for objects that can be used to remove callbacks.

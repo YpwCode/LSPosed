@@ -1,15 +1,13 @@
-
-
-package org.md.lib;
+package org.md.xlib;
 
 import static org.mliboot.mlspd.core.ApplicationServiceClient.serviceClient;
 import static org.mliboot.mlspd.deopt.PrebuiltMethodsDeopter.deoptResourceMethods;
-import static org.md.lib.XposedBridge.hookAllMethods;
-import static org.md.lib.XposedHelpers.callMethod;
-import static org.md.lib.XposedHelpers.findAndHookMethod;
-import static org.md.lib.XposedHelpers.getObjectField;
-import static org.md.lib.XposedHelpers.getParameterIndexByType;
-import static org.md.lib.XposedHelpers.setStaticObjectField;
+import static org.md.xlib.XposedBridge.hookAllMethods;
+import static org.md.xlib.XposedHelpers.callMethod;
+import static org.md.xlib.XposedHelpers.findAndHookMethod;
+import static org.md.xlib.XposedHelpers.getObjectField;
+import static org.md.xlib.XposedHelpers.getParameterIndexByType;
+import static org.md.xlib.XposedHelpers.setStaticObjectField;
 
 import android.app.ActivityThread;
 import android.content.pm.ApplicationInfo;
@@ -40,8 +38,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import org.md.lib.callbacks.XC_InitPackageResources;
-import org.md.lib.callbacks.XCallback;
+import org.md.xlib.callbacks.XC_InitPackageResources;
+import org.md.xlib.callbacks.XCallback;
 import hidden.HiddenApiBridge;
 
 public final class XposedInit {

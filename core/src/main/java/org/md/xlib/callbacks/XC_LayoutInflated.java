@@ -1,12 +1,10 @@
-
-
-package org.md.lib.callbacks;
+package org.md.xlib.callbacks;
 
 import android.content.res.XResources;
 import android.content.res.XResources.ResourceNames;
 import android.view.View;
 
-import org.md.lib.XposedBridge.CopyOnWriteSortedSet;
+import org.md.xlib.XposedBridge.CopyOnWriteSortedSet;
 
 /**
  * Callback for hooking layouts. Such callbacks can be passed to {@link XResources#hookLayout}

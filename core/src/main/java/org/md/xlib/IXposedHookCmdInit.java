@@ -1,6 +1,4 @@
-
-
-package org.md.lib;
+package org.md.xlib;
 
 
 /**

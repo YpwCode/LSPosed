@@ -1,6 +1,4 @@
-
-
-package org.md.lib;
+package org.md.xlib;
 
 import android.content.res.AssetManager;
 import android.content.res.Resources;

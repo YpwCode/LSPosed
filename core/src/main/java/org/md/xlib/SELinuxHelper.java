@@ -1,9 +1,7 @@
+package org.md.xlib;
 
-
-package org.md.lib;
-
-import org.md.lib.services.BaseService;
-import org.md.lib.services.DirectAccessService;
+import org.md.xlib.services.BaseService;
+import org.md.xlib.services.DirectAccessService;
 
 /**
  * A helper to work with (or without) SELinux, abstracting much of its big complexity.

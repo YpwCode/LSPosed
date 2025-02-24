@@ -1,4 +1,4 @@
-package org.md.lib;
+package org.md.xlib;
 
 /**
  * Hook the initialization of Zygote process(es), from which all the apps are forked.

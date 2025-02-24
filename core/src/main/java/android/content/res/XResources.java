@@ -1,14 +1,12 @@
-
-
 package android.content.res;
 
 import static org.mliboot.mlspd.nativebridge.ResourcesHook.rewriteXmlReferencesNative;
-import static org.md.lib.XposedHelpers.decrementMethodDepth;
-import static org.md.lib.XposedHelpers.findAndHookMethod;
-import static org.md.lib.XposedHelpers.getBooleanField;
-import static org.md.lib.XposedHelpers.getLongField;
-import static org.md.lib.XposedHelpers.getObjectField;
-import static org.md.lib.XposedHelpers.incrementMethodDepth;
+import static org.md.xlib.XposedHelpers.decrementMethodDepth;
+import static org.md.xlib.XposedHelpers.findAndHookMethod;
+import static org.md.xlib.XposedHelpers.getBooleanField;
+import static org.md.xlib.XposedHelpers.getLongField;
+import static org.md.xlib.XposedHelpers.getObjectField;
+import static org.md.xlib.XposedHelpers.incrementMethodDepth;
 
 import android.content.Context;
 import android.content.pm.PackageParser;
@@ -40,15 +38,15 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.WeakHashMap;
 
-import org.md.lib.IXposedHookZygoteInit;
-import org.md.lib.XC_MethodHook;
-import org.md.lib.XC_MethodHook.MethodHookParam;
-import org.md.lib.XposedBridge;
-import org.md.lib.XposedBridge.CopyOnWriteSortedSet;
-import org.md.lib.XposedInit;
-import org.md.lib.callbacks.XC_LayoutInflated;
-import org.md.lib.callbacks.XC_LayoutInflated.LayoutInflatedParam;
-import org.md.lib.callbacks.XCallback;
+import org.md.xlib.IXposedHookZygoteInit;
+import org.md.xlib.XC_MethodHook;
+import org.md.xlib.XC_MethodHook.MethodHookParam;
+import org.md.xlib.XposedBridge;
+import org.md.xlib.XposedBridge.CopyOnWriteSortedSet;
+import org.md.xlib.XposedInit;
+import org.md.xlib.callbacks.XC_LayoutInflated;
+import org.md.xlib.callbacks.XC_LayoutInflated.LayoutInflatedParam;
+import org.md.xlib.callbacks.XCallback;
 import xp.dummy.XResourcesSuperClass;
 import xp.dummy.XTypedArraySuperClass;
 

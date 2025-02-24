@@ -1,5 +1,3 @@
-
-
 package org.mliboot.mlsp.manager;
 
 import android.app.ActivityManager;
@@ -28,7 +26,6 @@ import androidx.preference.PreferenceManager;
 import org.lsposed.hiddenapibypass.HiddenApiBypass;
 import org.mliboot.mlsp.manager.adapters.AppHelper;
 import org.mliboot.mlsp.manager.receivers.LSPManagerServiceHolder;
-import org.mliboot.mlsp.manager.repo.RepoLoader;
 import org.mliboot.mlsp.manager.util.CloudflareDNS;
 import org.mliboot.mlsp.manager.util.ModuleUtil;
 import org.mliboot.mlsp.manager.util.Telemetry;
@@ -82,7 +79,6 @@ public class App extends Application {
                 list.parallelStream().forEach(i -> AppHelper.getAppLabel(i, pm));
                 AppHelper.getDenyList(false);
                 ModuleUtil.getInstance();
-                RepoLoader.getInstance();
             });
             App.getExecutorService().submit(HTML_TEMPLATE);
             App.getExecutorService().submit(HTML_TEMPLATE_DARK);

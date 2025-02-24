@@ -1,14 +1,12 @@
-
-
 package android.content.res;
 
 import android.app.AndroidAppHelper;
 import android.util.DisplayMetrics;
 
-import org.md.lib.IXposedHookInitPackageResources;
-import org.md.lib.IXposedHookZygoteInit;
-import org.md.lib.IXposedHookZygoteInit.StartupParam;
-import org.md.lib.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
+import org.md.xlib.IXposedHookInitPackageResources;
+import org.md.xlib.IXposedHookZygoteInit;
+import org.md.xlib.IXposedHookZygoteInit.StartupParam;
+import org.md.xlib.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 import hidden.HiddenApiBridge;
 
 /**

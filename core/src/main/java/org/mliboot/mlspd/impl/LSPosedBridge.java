@@ -11,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-import org.md.lib.XposedBridge;
+import org.md.xlib.XposedBridge;
 import org.mliboot.libxp.api.IXpInter;
 import org.mliboot.libxp.api.annotations.AfterInvocation;
 import org.mliboot.libxp.api.annotations.BeforeInvocation;

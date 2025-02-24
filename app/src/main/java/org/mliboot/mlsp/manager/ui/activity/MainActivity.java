@@ -43,13 +43,11 @@ import org.mliboot.mlsp.manager.App;
 import org.mliboot.mlsp.manager.ConfigManager;
 import org.mliboot.mlsp.manager.R;
 import org.mliboot.mlsp.manager.databinding.ActivityMainBinding;
-import org.mliboot.mlsp.manager.repo.RepoLoader;
 import org.mliboot.mlsp.manager.ui.activity.base.BaseActivity;
 import org.mliboot.mlsp.manager.util.ModuleUtil;
 import org.mliboot.mlsp.manager.util.ShortcutUtil;
 import org.mliboot.mlsp.manager.util.UpdateUtil;
 
-import java.util.HashSet;
 import java.util.Objects;
 
 import rikka.core.util.ResourceUtils;

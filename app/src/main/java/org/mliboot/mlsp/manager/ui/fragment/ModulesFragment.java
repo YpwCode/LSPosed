@@ -77,7 +77,6 @@ import org.mliboot.mlsp.manager.adapters.AppHelper;
 import org.mliboot.mlsp.manager.databinding.FragmentPagerBinding;
 import org.mliboot.mlsp.manager.databinding.ItemModuleBinding;
 import org.mliboot.mlsp.manager.databinding.SwiperefreshRecyclerviewBinding;
-import org.mliboot.mlsp.manager.repo.RepoLoader;
 import org.mliboot.mlsp.manager.ui.dialog.BlurBehindDialogBuilder;
 import org.mliboot.mlsp.manager.ui.widget.EmptyStateRecyclerView;
 import org.mliboot.mlsp.manager.util.GlideApp;
@@ -94,10 +93,9 @@ import rikka.core.util.ResourceUtils;
 import rikka.material.app.LocaleDelegate;
 import rikka.recyclerview.RecyclerViewKt;
 
-public class ModulesFragment extends BaseFragment implements ModuleUtil.ModuleListener, RepoLoader.RepoListener, MenuProvider {
+public class ModulesFragment extends BaseFragment implements ModuleUtil.ModuleListener, MenuProvider {
     private static final PackageManager pm = App.getInstance().getPackageManager();
     private static final ModuleUtil moduleUtil = ModuleUtil.getInstance();
-    private static final RepoLoader repoLoader = RepoLoader.getInstance();
     protected FragmentPagerBinding binding;
     protected SearchView searchView;
     private SearchView.OnQueryTextListener searchListener;
@@ -185,7 +183,6 @@ public class ModulesFragment extends BaseFragment implements ModuleUtil.ModuleLi
         });
 
         moduleUtil.addListener(this);
-        repoLoader.addListener(this);
         onModulesReloaded();
 
         return binding.getRoot();
@@ -260,11 +257,6 @@ public class ModulesFragment extends BaseFragment implements ModuleUtil.ModuleLi
         forEachAdaptor(ModuleAdapter::refresh);
         runOnUiThread(pagerAdapter::notifyDataSetChanged);
         updateModuleSummary();
-    }
-
-    @Override
-    public void onRepoLoaded() {
-        forEachAdaptor(ModuleAdapter::refresh);
     }
 
     private void updateModuleSummary() {
@@ -353,7 +345,6 @@ public class ModulesFragment extends BaseFragment implements ModuleUtil.ModuleLi
     public void onDestroyView() {
         super.onDestroyView();
         moduleUtil.removeListener(this);
-        repoLoader.removeListener(this);
         binding = null;
     }
 
@@ -582,21 +573,6 @@ public class ModulesFragment extends BaseFragment implements ModuleUtil.ModuleLi
                 }
                 sb.setSpan(foregroundColorSpan, sb.length() - warningText.length(), sb.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
             }
-            var ver = repoLoader.getModuleLatestVersion(item.packageName);
-            if (ver != null && ver.upgradable(item.versionCode, item.versionName)) {
-                if (warningText != null) sb.append("\n");
-                String recommended = getString(R.string.update_available, ver.versionName);
-                sb.append(recommended);
-                final ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(ResourceUtils.resolveColor(requireActivity().getTheme(), androidx.appcompat.R.attr.colorPrimary));
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                    final TypefaceSpan typefaceSpan = new TypefaceSpan(Typeface.create("sans-serif-medium", Typeface.NORMAL));
-                    sb.setSpan(typefaceSpan, sb.length() - recommended.length(), sb.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                } else {
-                    final StyleSpan styleSpan = new StyleSpan(Typeface.BOLD);
-                    sb.setSpan(styleSpan, sb.length() - recommended.length(), sb.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                }
-                sb.setSpan(foregroundColorSpan, sb.length() - recommended.length(), sb.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-            }
             if (sb.length() == 0) {
                 holder.hint.setVisibility(View.GONE);
             } else {
@@ -621,9 +597,6 @@ public class ModulesFragment extends BaseFragment implements ModuleUtil.ModuleLi
                     Intent intent = AppHelper.getSettingsIntent(item.packageName, item.userId);
                     if (intent == null) {
                         menu.removeItem(R.id.menu_launch);
-                    }
-                    if (repoLoader.getOnlineModule(item.packageName) == null) {
-                        menu.removeItem(R.id.menu_repo);
                     }
                     if (item.userId == 0) {
                         var users = ConfigManager.getUsers();

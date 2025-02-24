@@ -1,8 +1,6 @@
+package org.md.xlib;
 
-
-package org.md.lib;
-
-import org.md.lib.callbacks.XCallback;
+import org.md.xlib.callbacks.XCallback;
 
 /**
  * A special case of {@link XC_MethodHook} which completely replaces the original method.

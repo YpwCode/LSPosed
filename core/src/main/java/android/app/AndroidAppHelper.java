@@ -1,13 +1,11 @@
-
-
 package android.app;
 
-import static org.md.lib.XposedHelpers.findClass;
-import static org.md.lib.XposedHelpers.findFieldIfExists;
-import static org.md.lib.XposedHelpers.findMethodExactIfExists;
-import static org.md.lib.XposedHelpers.getObjectField;
-import static org.md.lib.XposedHelpers.newInstance;
-import static org.md.lib.XposedHelpers.setFloatField;
+import static org.md.xlib.XposedHelpers.findClass;
+import static org.md.xlib.XposedHelpers.findFieldIfExists;
+import static org.md.xlib.XposedHelpers.findMethodExactIfExists;
+import static org.md.xlib.XposedHelpers.getObjectField;
+import static org.md.xlib.XposedHelpers.newInstance;
+import static org.md.xlib.XposedHelpers.setFloatField;
 
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
@@ -19,8 +17,8 @@ import android.view.Display;
 import java.lang.ref.WeakReference;
 import java.util.Map;
 
-import org.md.lib.XSharedPreferences;
-import org.md.lib.XposedBridge;
+import org.md.xlib.XSharedPreferences;
+import org.md.xlib.XposedBridge;
 
 /**
  * Contains various methods for information about the current app.

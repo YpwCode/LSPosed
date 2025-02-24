@@ -1,5 +1,3 @@
-
-
 package org.mliboot.mlspd.hooker;
 
 import android.app.LoadedApk;
@@ -8,8 +6,8 @@ import android.util.Log;
 
 import org.mliboot.mlspd.util.Hookers;
 
-import org.md.lib.XposedHelpers;
-import org.md.lib.XposedInit;
+import org.md.xlib.XposedHelpers;
+import org.md.xlib.XposedInit;
 import org.mliboot.libxp.api.IXpInter;
 import org.mliboot.libxp.api.annotations.AfterInvocation;
 import org.mliboot.libxp.api.annotations.XpHandler;

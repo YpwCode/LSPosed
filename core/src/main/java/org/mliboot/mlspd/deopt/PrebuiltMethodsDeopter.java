@@ -1,5 +1,3 @@
-
-
 package org.mliboot.mlspd.deopt;
 
 import static org.mliboot.mlspd.deopt.InlinedMethodCallers.KEY_BOOT_IMAGE;
@@ -13,7 +11,7 @@ import org.mliboot.mlspd.util.Utils;
 import java.lang.reflect.Executable;
 import java.util.Arrays;
 
-import org.md.lib.XposedHelpers;
+import org.md.xlib.XposedHelpers;
 
 public class PrebuiltMethodsDeopter {
 

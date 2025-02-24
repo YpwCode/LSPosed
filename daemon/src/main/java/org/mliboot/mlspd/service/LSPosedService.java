@@ -1,5 +1,3 @@
-
-
 package org.mliboot.mlspd.service;
 
 import static android.content.Intent.EXTRA_UID;
@@ -177,6 +175,7 @@ public class LSPosedService extends ILSPosedService.Stub {
         }
     }
 
+    // TODO: 2025/2/21 星期五 app 安装/更新 发送通知
     private void broadcastAndShowNotification(String packageName, int userId, Intent intent, boolean isXposedModule) {
         Log.d(TAG, "package " + packageName + " changed, dispatching to manager");
         var action = intent.getAction();
@@ -186,12 +185,15 @@ public class LSPosedService extends ILSPosedService.Stub {
         intent.putExtra("isXposedModule", isXposedModule);
         LSPManagerService.broadcastIntent(intent);
         if (isXposedModule) {
-            // TODO: 2025/2/20 星期四 ModuleUtil.setModuleEnabled(packageName, true)
-            try {
-                ConfigManager.getInstance().enableModule(packageName);
-            } catch (Exception e) {
+            // TODO: 2025/2/20 星期四 自动启动模块
+            var enable = ConfigManager.getInstance().autoEnableModule(packageName);
+            Log.d(TAG, "autoEnableModule: " + enable);
+//            try {
+//                ConfigManager.getInstance().enableModule(packageName);
+//            } catch (Exception e) {
+//
+//            }
 
-            }
             var enabledModules = ConfigManager.getInstance().enabledModules();
             var scope = ConfigManager.getInstance().getModuleScope(packageName);
             boolean systemModule = scope != null && scope.parallelStream().anyMatch(app -> app.packageName.equals("system"));

@@ -1,5 +1,3 @@
-
-
 package org.mliboot.mlspd.hooker;
 
 import static org.mliboot.mlspd.core.ApplicationServiceClient.serviceClient;
@@ -25,12 +23,12 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.md.lib.XC_MethodHook;
-import org.md.lib.XC_MethodReplacement;
-import org.md.lib.XposedBridge;
-import org.md.lib.XposedHelpers;
-import org.md.lib.XposedInit;
-import org.md.lib.callbacks.XC_LoadPackage;
+import org.md.xlib.XC_MethodHook;
+import org.md.xlib.XC_MethodReplacement;
+import org.md.xlib.XposedBridge;
+import org.md.xlib.XposedHelpers;
+import org.md.xlib.XposedInit;
+import org.md.xlib.callbacks.XC_LoadPackage;
 import org.mliboot.libxp.api.IXpInter;
 import org.mliboot.libxp.api.IXpModuleInter;
 import org.mliboot.libxp.api.annotations.AfterInvocation;

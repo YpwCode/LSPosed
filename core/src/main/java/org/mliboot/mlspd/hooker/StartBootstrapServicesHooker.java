@@ -1,5 +1,3 @@
-
-
 package org.mliboot.mlspd.hooker;
 
 import static org.mliboot.mlspd.util.Utils.logD;
@@ -9,9 +7,9 @@ import androidx.annotation.NonNull;
 import org.mliboot.mlspd.impl.LSPosedContext;
 import org.mliboot.mlspd.util.Hookers;
 
-import org.md.lib.XposedBridge;
-import org.md.lib.XposedInit;
-import org.md.lib.callbacks.XC_LoadPackage;
+import org.md.xlib.XposedBridge;
+import org.md.xlib.XposedInit;
+import org.md.xlib.callbacks.XC_LoadPackage;
 import org.mliboot.libxp.api.IXpInter;
 import org.mliboot.libxp.api.IXpModuleInter;
 import org.mliboot.libxp.api.annotations.BeforeInvocation;
